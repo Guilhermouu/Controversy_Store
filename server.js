@@ -1,0 +1,60 @@
+import express from 'express';
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
+import bcrypt from 'bcryptjs';
+import cors from 'cors';
+
+const app = express();
+const port = 3000;
+const  cors_server= cors;
+
+
+
+app.use(cors_server({
+  origin: 'http://127.0.0.1:5500'
+}));
+
+app.use(express.json());
+
+// // Inicialização do banco de dados
+async function initializeDatabase() {
+  const db = await open({
+    filename: 'controversy.db',
+    driver: sqlite3.Database
+  });
+
+  return db;
+}
+
+// Rota de login
+app.post("/api/login", async (req, res) => {
+  const { email, senha } = req.body;
+
+  if (!email || !senha) {
+    return res.status(400).json({ message: "Email e senha são obrigatórios" });
+  }
+
+  const db = await initializeDatabase();
+
+  const usuario = await db.get("SELECT * FROM usuarios WHERE email = ?", [email]);
+
+  if (!usuario) {
+    return res.status(401).json({ message: "Usuário não encontrado" });
+  }
+
+  const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
+
+  if (senhaCorreta) {
+    res.status(200).json({ message: "Login bem-sucedido", nome: usuario.nome });
+  } else {
+    res.status(401).json({ message: "Senha incorreta" });
+  }
+});
+
+// Iniciar servidor
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
+
+

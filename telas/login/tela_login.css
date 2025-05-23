@@ -1,0 +1,348 @@
+/*------------------------------------
+  1. Variáveis CSS para cores principais
+------------------------------------*/
+:root {
+    --preto: #000;
+    --branco: #fff;
+    --dourado: #C3971E; /* Tom de dourado */
+    --cinza-claro: #ccc;
+}
+
+/*------------------------------------
+  2. Reset básico e estilos globais
+------------------------------------*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    user-select: none;
+    background: var(--branco);
+    font-family: 'Harmattan', sans-serif;
+    color: #333;
+    user-select: none;
+}
+
+/*------------------------------------
+  3. Cabeçalho Principal
+------------------------------------*/
+header {
+    background-color: black;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 1px 1px 8px rgb(206, 170, 6);
+    transition: all 0.5s ease;
+    padding-bottom: -10px;
+    width: 100%;
+}
+
+/*------------------------------------
+  4. Container do Cabeçalho e Logo
+------------------------------------*/
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0.7vw 2vw;             
+    height: 8.5vw;
+}
+.logo {
+    position: absolute;         
+    left: 50%;                  
+    top: 50%;                   
+    transform: translate(-50%, -50%);  
+   
+    height: 86%;        
+    width: auto;                
+    object-fit: contain;      
+    padding-top: 3px;   
+}
+
+/*------------------------------------
+  5. Seção de cadastro
+------------------------------------*/
+.login-section {
+    margin-top: 2rem;
+}
+
+/*------------------------------------
+  6. Animações e posicionamento de imagens
+------------------------------------*/
+.imagem_central {
+  position: relative;
+  z-index: 2;
+}
+.imagem_central:hover{
+  top: -20px;
+}
+.imagem_inclinada:hover{
+  top: -20px;
+  z-index: 3;
+}
+.imagem_inclinada_2:hover{
+  top: -20px;
+  z-index: 3;
+}
+.imagem_central, .imagem_inclinada, .imagem_inclinada_2{
+  transition: top 0.3s ease;
+  top:0;
+}
+.imagem_inclinada {
+    position: relative;
+    transform: rotate(-10deg);
+    z-index: 1;
+}
+.imagem_inclinada_2 {
+    position: relative;
+    transform: rotate(10deg);
+    z-index: 1;
+}
+
+/*------------------------------------
+  7. Estilização das imagens sobrepostas
+------------------------------------*/
+.image-container {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+.image-container img {
+    width: 210px;
+    margin: 0 -65px;
+    border: 5px solid var(--branco);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    display: inline-block;
+    vertical-align: top;
+}
+.image-container .caption {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #666;
+}
+
+/*------------------------------------
+  8. Formulário de cadastro e títulos
+------------------------------------*/
+.form-container h1 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+}
+label {
+    margin: 0.5rem 0 0.2rem;
+    font-weight: bold;
+}
+
+/*------------------------------------
+  9. Container para input + ícone
+------------------------------------*/
+.input-icon {
+    position: relative;
+    margin-bottom: 1rem;
+}
+.input-icon i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1rem;
+}
+.input-icon input {
+    width: 90%;
+    padding: 12px 12px 12px 35px; /* espaço para o ícone */
+    border: 1px solid var(--cinza-claro);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+}
+
+/*------------------------------------
+ 10. Foco no input
+------------------------------------*/
+.input-icon input:focus {
+    border-color: var(--dourado);
+}
+
+/*------------------------------------
+ 11. Botão de login
+------------------------------------*/
+.btn-login {
+    background: var(--preto);
+    color: var(--branco);
+    border: none;
+    border-radius: 20px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    width: 90%;
+}
+.btn-login:hover {
+    background: #333;
+}
+
+/*------------------------------------
+ 12. Divisor "OU"
+------------------------------------*/
+.divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+    font-size: 0.9rem;
+    color: #666;
+}
+.divider span {
+    background: var(--branco);
+    padding: 0 0.5rem;
+    position: relative;
+    z-index: 1;
+    right:5%;
+}
+.divider:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    right: 10%;
+    height: 1px;
+    background: var(--cinza-claro);
+    z-index: 0;
+}
+
+/*------------------------------------
+ 13. Link para login
+------------------------------------*/
+.cadastro-link {
+    position: relative;
+    left: -5%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+.cadastro-link a {
+    color: var(--dourado);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/*------------------------------------
+ 14. Rodapé
+------------------------------------*/
+ footer {
+    background-color: black;
+    color: white;
+    font-family: Harmattan, sans-serif;
+    padding: 2vw 4vw;
+    border-top: 0.3vw solid gold;
+    font-size: 15px;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1vw;
+    margin-bottom: -5px;
+  }
+
+  .footer-contato{
+    margin-top:20px ;
+  }
+  .footer-info,
+  .footer-contato {
+    flex: 1;
+  }
+  .footer-info h2,
+  .footer-contato h2 {
+    margin-bottom: 1vw;
+  }
+  .footer-info p {
+    opacity: 0.7;
+   
+    margin: 0 0 1vw 0;
+  }
+  .footer-info span {
+    font-size: 1vw;
+    opacity: 0.6;
+  }
+  .footer-contato a {
+    color: white;
+    text-decoration: underline;
+   
+  }
+  .footer-contato p {
+ 
+    margin: 0.5vw 0;
+  }
+  .footer-contato hr {
+    border: none;
+    border-top: 1px solid white;
+    opacity: 0.5;
+    margin: 0.5vw 0 1vw 0;
+  }
+  .footer-divider {
+    width: 2px;
+    background-color: white;
+    height: 150px;
+    margin-top: 18px;
+    opacity: 0.3;
+  }
+
+/*------------------------------------
+ 15. Responsividade
+------------------------------------*/
+@media (min-width: 768px) {
+    /* Layout horizontal em telas >= 768px */
+    .login-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .image-container, .form-container {
+        flex: 1;
+    }
+    .image-container {
+        margin-right: 2rem;
+        margin-bottom: 0;
+    }
+    /* Rodapé em linha no desktop */
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width:720px){
+    .image-container img{
+      width: 170px;
+    }
+  
+    footer {
+      font-size: 11px;
+      line-height:20px;
+    }
+
+
+    .footer-info p{
+      line-height: 15px;
+    }
+
+    .footer-divider{
+      height: auto;
+    }
+  }
