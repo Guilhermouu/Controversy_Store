@@ -77,6 +77,42 @@ app.post('/api/cadastro', async (req, res) => {
     res.status(500).json({ success: false, message: 'Erro ao cadastrar usuário.' });
   }
 });
+app.post('/api/carrinho', async (req, res) => {
+  const { usuario_id, produto_id, quantidade } = req.body;
+
+  if (!usuario_id || !produto_id || !quantidade) {
+    return res.status(400).json({ success: false, message: 'Dados incompletos.' });
+  }
+
+  try {
+    const db = await initializeDatabase();
+
+    // Verifica se o produto já está no carrinho do usuário
+    const itemExistente = await db.get(
+      'SELECT * FROM carrinho WHERE usuario_id = ? AND produto_id = ?',
+      [usuario_id, produto_id]
+    );
+
+    if (itemExistente) {
+      // Atualiza a quantidade
+      await db.run(
+        'UPDATE carrinho SET quantidade = quantidade + ? WHERE usuario_id = ? AND produto_id = ?',
+        [quantidade, usuario_id, produto_id]
+      );
+    } else {
+      // Insere um novo item
+      await db.run(
+        'INSERT INTO carrinho (usuario_id, produto_id, quantidade) VALUES (?, ?, ?)',
+        [usuario_id, produto_id, quantidade]
+      );
+    }
+
+    res.status(200).json({ success: true, message: 'Produto adicionado ao carrinho.' });
+  } catch (error) {
+    console.error('Erro ao adicionar ao carrinho:', error.message);
+    res.status(500).json({ success: false, message: 'Erro interno do servidor.' });
+  }
+});
 
 // Iniciar servidor
 app.listen(port, () => {
