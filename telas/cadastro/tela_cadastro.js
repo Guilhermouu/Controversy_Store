@@ -1,30 +1,38 @@
-document.addEventListener('DOMContentLoaded',() => {
+const form = document.querySelector('form');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
 
-    //Lógica da verificação de senhas iguais
-    
-    const senha = document.querySelector('#senha1')
-    const verificar_senha =  document.querySelector('#senha2')
-    const botao_cadasto = document.querySelector('.btn-cadastrar')
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha1').value;
+  const confirmarSenha = document.getElementById('senha2').value;
+  const mensagemDiv = document.getElementById('message');
 
+  // Validação da senha
+  if (senha !== confirmarSenha  ) {
+    mensagemDiv.textContent = 'As senhas não coincidem.';
+    mensagemDiv.className = 'mensagem erro';
+    return;
+  }
 
-    botao_cadasto.addEventListener('click', (event) =>{
-    const senha_valor =  senha.value.toString()
-    
-    const verificar_senha_valor = verificar_senha.value.toString()
+  try {
+    const response = await fetch('http://localhost:3000/api/cadastro', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, senha }),
+    });
 
-    if (senha_valor === verificar_senha_valor){
-        verificar_senha.setCustomValidity('');
+    const data = await response.json();
+
+    if (data.success) {
+      alert('Cadastro realizado com sucesso!');
+      window.location.href = '/tela-inicial.html';
+    } else {
+      mensagemDiv.textContent = data.message;
+      mensagemDiv.className = 'mensagem erro';
     }
-
-    else{
-        event.preventDefault();
-        verificar_senha.setCustomValidity('As senhas não coincidem.')
-        verificar_senha.reportValidity()
-       
-
-    }
-
-    })
-       
-    
-})
+  } catch (error) {
+    console.error('Erro:', error);
+    mensagemDiv.textContent = 'Erro ao conectar com o servidor.';
+    mensagemDiv.className = 'mensagem erro';
+  }
+});
