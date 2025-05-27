@@ -8,8 +8,6 @@ const app = express();
 const port = 3000;
 const  cors_server= cors;
 
-
-
 app.use(cors_server({
   origin: 'http://127.0.0.1:5500'
 }));
@@ -51,10 +49,36 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.post('/api/cadastro', async (req, res) => {
+  const { email, senha } = req.body;
+
+  if (!email || !senha) {
+    return res.status(400).json({ success: false, message: 'E-mail e senha são obrigatórios.' });
+  }
+
+  try {
+    const db = await initializeDatabase();
+
+    // Verifica se o e-mail já está cadastrado
+    const existingUser = await db.get('SELECT * FROM usuarios WHERE email = ?', [email]);
+    if (existingUser) {
+      return res.status(409).json({ success: false, message: 'E-mail já está cadastrado.' });
+    }
+
+    // Criptografa a senha
+    const hashedPassword = await bcrypt.hash(senha, 10);
+
+    // Insere o usuário no banco
+    await db.run('INSERT INTO usuarios (email, senha) VALUES (?, ?)', [email, hashedPassword]);
+
+    res.status(201).json({ success: true, message: 'Usuário cadastrado com sucesso!' });
+  } catch (error) {
+    console.error('Erro no cadastro:', error.message);
+    res.status(500).json({ success: false, message: 'Erro ao cadastrar usuário.' });
+  }
+});
+
 // Iniciar servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
-
-
-
