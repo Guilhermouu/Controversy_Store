@@ -1,367 +1,22 @@
-/*------------------------------------
-  1. Fontes Personalizadas
-------------------------------------*/
-  @font-face {
-    font-family: 'Hammersmith One';
-    src: url('fontes/HammersmithOne.ttf') format('truetype');
-  }
-  
-  @font-face {
-    font-family: 'Harmattan';
-    src: url('fontes/Harmattan-Regular.ttf') format('truetype');
-  }
-  
+
+
+@import url(/componentes_padrao_css/componentes_padrao.css);
+@import url(/componentes_padrao_css/componentes_padrao2.css);
   /*------------------------------------
-    2. Elementos Globais
-  ------------------------------------*/
-
-
-  h3 {
-    font-family: Hammersmith One;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    overscroll-behavior: none;
-    min-width: 100%;
-    min-height: 100%;
-    position: relative;
-    user-select: none;
-    
-  }
-
-  
-  
-  /*------------------------------------
-    3. Header Principal
-  ------------------------------------*/
-  header {
-    background-color: black;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    box-shadow: 1px 1px 8px rgb(206, 170, 6);
-    transition: all 0.5s ease;
-    
-  }
-  
-  .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    padding: 0.7vw 2vw;             
-    height: 7vw;
-    
-
-  }
-  
-  /*------------------------------------
-    4. Área do Menu
-  ------------------------------------*/
-  .menu-area{
-    display: flex;
-    align-items: center;
-    gap: 1vw;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    z-index: 100;
-    padding-left:10px ;
-  }
-
-  .menu-container {
-    width: 32px;
-    height: 23px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;;
-    align-items: center;
-    z-index: 10;
-    
-  }
-
-  .menu-bar {
-    width: 79%;
-    height: 5px;
-    background-color: white;
-    transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
-    opacity:0.6;
-  }
-  
-.menu-container.open .menu-bar:nth-child(1) {
-  transform: rotate(40deg) translateY(230%);
-}
-
-.menu-container.open .menu-bar:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-container.open .menu-bar:nth-child(3) {
-  transform: rotate(-40deg) translateY(-230%);
-}
-.menu-texto {
-    color: white;
-    font-family: Harmattan;
-    font-size: 1.5vw;
-    padding-top: 3px;
-    padding-right: 10px;
-    transition: margin-left 0.5s ease;
-} 
-.barra-lateral {
-  position: fixed;
-  top: 7vw;
-  overflow-y: scroll; 
-  height: calc(100% - 7vw); 
-  left: -100%;       
-  width: 30%;
-  height: 100%;
-  background: #000;    
-  padding: 2rem 1.5rem;
-  transition: left 0.4s ease-in-out,background-color 0.1s ease;
-}
-
-.barra-lateral ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.barra-lateral ul li {
-  padding-bottom: 1rem;
-}
-.barra-lateral ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-family: Harmattan, sans-serif;
-  font-size: 2vw;
-  font-family: Harmattan;
-  text-transform: uppercase;
-  text-decoration: underline 0 rgba(255, 255, 255, 0);
-  transition: text-decoration-color 300ms;
-}
-.barra-lateral ul li a:hover {
-  text-decoration: underline 1px white;
-}
-
-
-.barra-lateral::-webkit-scrollbar {
-  width: 8px;  
-}
-
-.barra-lateral::-webkit-scrollbar-track {
-  background-color: black; 
-}
-
-.barra-lateral::-webkit-scrollbar-thumb {
-  background-color: gray;  
-  border-radius: 4px;         
-  
- 
-}
-
-.barra-lateral::-webkit-scrollbar-thumb:hover {
-  background-color: white;  
-}
-/* Quando aberto, desloca para 0 */
-.menu-container.open ~ .barra-lateral {
-  left: 0;
-}
-
-
-
-  /*------------------------------------
-    5. Logo Central
-  ------------------------------------*/
-  .logo {
-    position: absolute;         
-    left: 50%;                  
-    top: 50%;                   
-    transform: translate(-50%, -50%);  
-    max-height: 80%;            
-    width: auto;                
-    object-fit: contain;      
-    padding-top: 3px;   
-  }
-  
-  /*------------------------------------
-    6. Ícones de Ação
-      - Busca (lupa)
-      - Usuário e Carrinho
-  ------------------------------------*/
-  .lupa-area {
-    display: flex;
-    align-items: center;
-  }
-  .lupa {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    transition: opacity 0.5s ease;
-  }
-
-  .barra_de_pesquisa{
-    width:6px;
-    border-radius: 20px;
-    transition: width 0.5s ease;
-  }
-
-  .barra-acima {
-  position: fixed;
-  top: -500%;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2vw;
-}
-.barra-pesquisa {
-  display: flex;
-  align-items: center;
-  width: 70vw;
-  max-width: 600px;
-  margin-top: 3vw;
-}
-.search-icon {
-  font-size: 2vw;
-  margin-right: 1vw;
-}
-.barra-pesquisa input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid #fff;
-  color: #fff;
-  font-family: 'Hammersmith One', sans-serif;
-  font-size: 1.5vw;
-  padding: 0.5vw;
-}
-.barra-pesquisa input:focus {
-  outline: none;
-  border-bottom-color: #bfa463;
-}
-.close-btn {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 2vw;
-  margin-left: 1vw;
-  cursor: pointer;
-}
-.close-btn:focus {
-  outline: none;
-}
-.categorias-menu ul {
-  display: flex;
-  justify-content: center;
-  gap: 3vw;
-  list-style: none;
-  margin: 4vw 0;
-  padding: 0;
-}
-.categorias-menu li a {
-  color: #fff;
-  font-family: 'Hammersmith One', sans-serif;
-  font-size: 1.3vw;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.categorias-menu li a:hover {
-  color: #bfa463;
-}
-.mais-vendido {
-  text-align: center;
-  margin: 5vw 0 3vw;
-}
-.mais-vendido h2 {
-  font-family: 'Hammersmith One', sans-serif;
-  font-size: 2.5vw;
-  margin-bottom: 2vw;
-  color: #fff;
-}
-.card-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2vw;
-}
-.card {
-  position: relative;
-  width: 20vw;
-  background-color: #1a1a1a;
-  border-radius: 0.5vw;
-  overflow: hidden;
-  transition: transform 0.3s;
-  margin-bottom: 3vw;
-}
-.card:hover {
-  transform: translateY(-0.5vw);
-}
-.card img {
-  width: 100%;
-  display: block;
-}
-.product-name {
-  font-family: 'Harmattan', sans-serif;
-  font-size: 1vw;
-  color: #fff;
-  margin: 1vw 0;
-}
-.star-icon {
-  position: absolute;
-  top: 1vw;
-  right: 1vw;
-  color: #bfa463;
-  font-size: 1.5vw;
-}
-
-  .carrinho-area {
-    display: flex;
-    justify-content: end;
-  }
-  
-  .area-direita {
-    display: flex;
-  }
-  
-  .usuario_icone {
-    height: 40px;
-    width: 40px;
-    padding-right: 10px;
-    filter: invert(100%) sepia(0%) saturate(0%) brightness(50%);
-    cursor: pointer;
-  }
-  
-  .carrinho {
-    height: 40px;
-    width: 40px;
-    filter: invert(100%) sepia(0%) saturate(0%) brightness(50%);
-    cursor: pointer;
-  }
-  
-  /*------------------------------------
-    7. Seção Hero (Imagem Principal)
+    7. Seção Hero (Imagem Principal)  
   ------------------------------------*/
   .imagem-wrapper {
     position: relative;
     width: 100%;
     max-width: 100vw;
     overflow: hidden;
-  }
+}
   
   .primeira_imagem {
     width: 100%;
     height: auto;
     display: block;
-  }
+}
   
   .caixa-primaria {
     position: absolute;
@@ -374,7 +29,7 @@
     justify-content: center;
     align-items: flex-start;
     gap: 10vw;
-  }
+}
   
   .texto_primeira_img,
   .texto_dois_primeira_img,
@@ -383,6 +38,9 @@
     color: white;
     max-width: 90%;
     word-wrap: break-word;
+    font-family: Hammersmith One;
+    font-style: normal;
+    font-weight: normal;
   }
   .caixa-primaria .texto_primeira_img {
     font-size: 4vw;
@@ -419,7 +77,6 @@
   .textos_cinza4,
   .textos_cinza5,
   .textos_cinza6 {
-    font-family: Harmattan;
     font-weight: normal;
     font-size: 2vw;
     line-height: 100%;
@@ -428,6 +85,7 @@
     padding-bottom: 70px;
     color: black;
     opacity: 45%;
+    font-family: Harmattan;
   }
   .textos_cinza1,
   .textos_cinza4,
@@ -438,10 +96,12 @@
   .textos_cinza3 {
     text-align: center;
     margin-top: 0.7vw;
+
   }
   .textos_cinza5 {
     padding: 0px;
     letter-spacing: 10px;
+ 
   }
   .textos_cinza6 {
     padding: 10px;
@@ -450,7 +110,7 @@
     font-size: 1.8vw;
     letter-spacing: 0;
     text-align: left;
-    font-family: Hammersmith One;
+    
   }
   
   /*------------------------------------
@@ -613,131 +273,36 @@
   .info {
     padding: 0;
     text-align: center;
-    font-family: Harmattan;
+    font-family: 'Harmattan';
     font-size: 1.3vw;
   }
-  
-  /*------------------------------------
-   13. Footer
-  ------------------------------------*/
-  footer {
-    background-color: black;
-    color: white;
-    font-family: Harmattan, sans-serif;
-    padding: 2vw 4vw;
-    border-top: 0.3vw solid gold;
-    font-size: 15px;
-  }
-  .footer-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 1vw;
-  }
 
-  .footer-contato{
-    margin-top:20px ;
+/*------------------------------------
+ 15. Responsividade
+------------------------------------*/
+@media (max-width: 768px) {
+  .barra-acima{
+    padding-top: 20%;
   }
-  .footer-info,
-  .footer-contato {
-    flex: 1;
+  .menu-area .menu-texto {
+    font-size: 3vw;
   }
-  .footer-info h3,
-  .footer-contato h3 {
-    margin-bottom: 1vw;
+  .caixa-primaria .texto_primeira_img {
+    font-size: 6vw;
   }
-  .footer-info p {
-    opacity: 0.7;
-   
-    margin: 0 0 1vw 0;
+  .caixa-primaria .texto_dois_primeira_img {
+    font-size: 10vw;
   }
-  .footer-info span {
-    font-size: 1vw;
-    opacity: 0.6;
+  .texto_tres_primeira_img {
+    font-size: 5vw;
   }
-  .footer-contato a {
-    color: white;
-    text-decoration: underline;
-   
+  .textos_cinza1,
+  .textos_cinza2,
+  .textos_cinza3,
+  .textos_cinza4,
+  .textos_cinza5 {
+    font-size: 3.5vw;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
-  .footer-contato p {
- 
-    margin: 0.5vw 0;
-  }
-  .footer-contato hr {
-    border: none;
-    border-top: 1px solid white;
-    opacity: 0.5;
-    margin: 0.5vw 0 1vw 0;
-  }
-  .footer-divider {
-    width: 2px;
-    background-color: white;
-    height: auto;
-    margin-top: 20px;
-    opacity: 0.3;
-  }
-
-
- 
-  /*------------------------------------
-   14. Responsividade
-  ------------------------------------*/
-  @media (max-width: 768px) {
-    /* Header mais alto e espaçamento interno maior */
-    header {
-      height: 10vw;
-      padding: 1vw 3vw;
-    }
-    .header-container {
-      padding: 1vw 3vw;
-    }
-
-    header img{
-      height: 100px;
-      width: 100px;
-    }
-  
-    /* Menu e textos maiores maiores */
-    .menu-area .menu-texto {
-      font-size: 3vw;
-    }
- 
-    /* Textos da primeira imagem */
-    .caixa-primaria .texto_primeira_img {
-      font-size: 6vw;
-    }
-    .caixa-primaria .texto_dois_primeira_img {
-      font-size: 10vw;
-    }
-    .texto_tres_primeira_img {
-      font-size: 5vw;
-    }
-  
-    /* Títulos e legendas em cinza */
-    .textos_cinza1,
-    .textos_cinza2,
-    .textos_cinza3,
-    .textos_cinza4,
-    .textos_cinza5 {
-      font-size: 3.5vw;
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-  
-    /* Texto informativo */
-    .info {
-      font-size: 2.5vw;
-    }
-  
-    /* Footer */
-    footer {
-      font-size: 10px;
-      line-height:20px;
-    }
-
-
-    .footer-info p{
-      line-height: 15px;
-    }
-  }
-  
+}

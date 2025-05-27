@@ -5,13 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Controversy</title>
   <link rel="stylesheet" href="tela-inicial.css">
-  
+
 </head>
 <body>
+
   <!-- Header -->
   <header>
     <nav class="header-container">
+      
+      <!-- Menu Área -->
       <div class="menu-area">
+
+        <!-- Menu Container -->
         <div class="menu-container">
           <span class="menu-bar"></span>
           <span class="menu-bar"></span>
@@ -21,7 +26,7 @@
         <!-- Sidebar -->
         <nav class="barra-lateral">
           <ul>
-            <li><a href="telas/login/tela_login.html">Login</a></li>
+            <li><a href="/telas/login/tela_login.html">Login</a></li>
             <li><a href="#">Carrinho</a></li>
             <li><a href="#">Novidades</a></li>
             <li><a href="#">Moda Casual</a></li>
@@ -31,76 +36,102 @@
           </ul>
         </nav>
 
-        <div class="barra-acima">
-           <div class="barra-pesquisa">
-  <i class="fa fa-search search-icon" aria-hidden="true"></i>
-  <input type="text" placeholder="Buscar produtos..." />
-  <button class="close-btn" aria-label="Fechar busca">
-    <i class="fa fa-times" aria-hidden="true"></i>
-  </button>
-</div>
-<nav class="categorias-menu">
-  <ul>
-    <li><a href="#">Casual</a></li>
-    <li><a href="#">Corporativa</a></li>
-    <li><a href="#">Festiva</a></li>
-    <li><a href="#">Inverno</a></li>
-  </ul>
-</nav>
-<section class="mais-vendido">
-  <h2>Mais Vendido</h2>
-  <div class="card-container">
-    <div class="card">
-      <div class="star-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
-      <a href="#">
-        <img src="path/to/imagem1.jpg" alt="Produto 1" />
-        <p class="product-name">Produto 1</p>
-      </a>
-    </div>
-    <div class="card">
-      <div class="star-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
-      <a href="#">
-        <img src="path/to/imagem2.jpg" alt="Produto 2" />
-        <p class="product-name">Produto 2</p>
-      </a>
-    </div>
-    <div class="card">
-      <div class="star-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
-      <a href="#">
-        <img src="path/to/imagem3.jpg" alt="Produto 3" />
-        <p class="product-name">Produto 3</p>
-      </a>
-    </div>
-    <div class="card">
-      <div class="star-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
-      <a href="#">
-        <img src="path/to/imagem4.jpg" alt="Produto 4" />
-        <p class="product-name">Produto 4</p>
-      </a>
-    </div>
-  </div>
-</section>
-
-        </div>
-
         <p class="menu-texto">MENU</p>
         <img src="/imagens/lupa.png" alt="Lupa" class="lupa">
-        
+
       </div>
+
+      <!-- Logo -->
       <img src="/imagens/logo.png" alt="Logo Controversy" class="logo">
 
+      <!-- Área Direita -->
       <div class="area-direita">
         <img src="/imagens/user_icon.png" alt="Usuário" class="usuario_icone">
         <img src="/imagens/carrinho.png" alt="Carrinho" class="carrinho">
       </div>
+
     </nav>
+
+    <!-- Barra Acima (movida para cá, fora da .menu-area) -->
+    <div class="barra-acima">
+
+      <!-- Botão X para fechar -->
+      <div class="x-container">
+        <span class="x-bar"></span>
+        <span class="x-bar"></span>
+        <span class="x-bar"></span>
+      </div>
+
+      <!-- Barra de Pesquisa -->
+      <div class="barra-pesquisa">
+       
+        <input class="pesquisa" type="text" placeholder="Buscar produtos..." />
+         <img src="/imagens/lupa.png" alt="Lupa" class="lupa-input">
+         <div class="simples-x-fechar"></div>
+          <div class="simples-x"></div>
+      </div>
+
+      <!-- Menu de Categorias -->
+      <nav class="categorias-menu">
+        <ul>
+          <li><a href="#">Casual</a></li>
+          <li><a href="#">Corporativa</a></li>
+          <li><a href="#">Festiva</a></li>
+          <li><a href="#">Inverno</a></li>
+        </ul>
+      </nav>
+
+      <!-- Seção Mais Vendidos -->
+      <section class="mais-vendido">
+        <h2>Mais Vendidos</h2>
+        <div class="card-container">
+
+          <div class="card">
+            <div class="star-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
+            <a href="#">
+              <img src="imagens/kirei 1.jpg" alt="Produto 1" />
+              <p class="product-name">Produto 1</p>
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="star-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
+            <a href="#">
+              <img src="imagens/kirei2.png" alt="Produto 2" />
+              <p class="product-name">Produto 2</p>
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="star-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
+            <a href="#">
+              <img src="imagens/oi.jpg" alt="Produto 3" />
+              <p class="product-name">Produto 3</p>
+            </a>
+          </div>
+
+          <div class="card">
+            <div class="star-icon"><i class="fa fa-star" aria-hidden="true"></i></div>
+            <a href="#">
+              <img src="imagens/eae.jpg" alt="Produto 4" />
+              <p class="product-name">Produto 4</p>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
   </header>
 
   <!-- Conteúdo principal que receberá blur -->
   <div class="content-wrapper">
+
+    <!-- Primeiro Conteúdo -->
     <section class="primeiro_conteudo">
       <div class="imagem-wrapper">
         <img src="/imagens/primeira_imagem.jpg" alt="Promoção" class="primeira_imagem">
+
         <div class="caixa-primaria">
           <h1 class="texto_primeira_img">SURPREENDA EM <br>DOBRO</h1>
           <h1 class="texto_dois_primeira_img">30%</h1>
@@ -111,17 +142,17 @@
           </h1>
         </div>
       </div>
-
       <h1 class="textos_cinza1">DESCUBRA AS TENDÊNCIAS DO MOMENTO</h1>
 
       <!-- Cards de Moda -->
       <div class="imagens_e_textos">
+
         <!-- Moda Casual -->
         <article class="moda_item">
           <img src="/imagens/moda_casual.jpg" alt="Moda Casual">
           <div class="sobreposição">
             <h3>MODA CASUAL</h3>
-            <button onclick="location.href='telas/telas_ver_mais/tela_ver_casual.html'">Ver Mais</button>
+            <button onclick="location.href='/telas/ver_mais/casual_ver_mais/casual_ver_mais.html'">Ver Mais</button>
           </div>
           <h1 class="textos_cinza2">+ PRATICIDADE</h1>
         </article>
@@ -156,13 +187,17 @@
           <h1 class="textos_cinza5">Descubra seu look Controversy</h1>
           <p class="info">Cada peça é escolhida para realçar sua essência. Receba sua compra com todo cuidado <br> e sofisticação que você merece.</p>
         </article>
+
       </div>
     </section>
-  </div>
 
+ 
+  </div>
   <!-- Footer -->
   <footer>
     <div class="footer-container">
+
+      <!-- Informações do Footer -->
       <div class="footer-info">
         <h3>Controversy • Estilo em Todos os Momentos</h3>
         <p>
@@ -175,6 +210,7 @@
 
       <div class="footer-divider"></div>
 
+      <!-- Contato do Footer -->
       <div class="footer-contato">
         <h3>Contatos</h3>
         <p>Email: <a href="mailto:controversy@gmail.com">controversy@gmail.com</a></p>
@@ -182,8 +218,10 @@
         <p>Instagram: controversy_br</p>
         <hr>
       </div>
+
     </div>
   </footer>
-  <script src="tela-inicial.js"></script>
+   </div>
+  <script type = "module" src="tela-inicial.js" defer></script>
 </body>
 </html>
