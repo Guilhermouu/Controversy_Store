@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tela de Pagamento</title>
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="pagamento.css">
+  <!-- JS de comportamento -->
+  <script type="module" src="pagamento.js" defer></script>
+</head>
+<body>
+
+  <!-- =====================================================
+       1. HEADER PRINCIPAL
+       Contém menu, logo, busca e categorias rápidas
+  ===================================================== -->
+  <header>
+    <nav class="header-container">
+      <div class="menu-area">
+        <div class="menu-container">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </div>
+        <nav class="barra-lateral">
+          <ul>
+            <li><a href="/telas/login/tela_login.html">Login</a></li>
+            <li><a href="#">Carrinho</a></li>
+            <li><a href="#">Novidades</a></li>
+            <li><a href="#">Moda Casual</a></li>
+            <li><a href="#">Moda Corporativa</a></li>
+            <li><a href="#">Moda Festiva</a></li>
+            <li><a href="#">Moda Inverno</a></li>
+          </ul>
+        </nav>
+        <p class="menu-texto">MENU</p>
+        <img src="/imagens/lupa.png" alt="Lupa" class="lupa">
+      </div>
+
+      <img src="/imagens/logo.png" alt="Logo Controversy" class="logo">
+
+      <div class="area-direita">
+        <img src="/imagens/user_icon.png" alt="Usuário" class="usuario_icone">
+        <img src="/imagens/carrinho.png" alt="Carrinho" class="carrinho">
+      </div>
+    </nav>
+
+    <div class="barra-acima">
+      <div class="x-container">
+        <span class="x-bar"></span>
+        <span class="x-bar"></span>
+        <span class="x-bar"></span>
+      </div>
+      <div class="barra-pesquisa">
+        <input class="pesquisa" type="text" placeholder="Buscar produtos..." />
+        <img src="/imagens/lupa.png" alt="Lupa" class="lupa-input">
+        <div class="simples-x-fechar"></div>
+        <div class="simples-x"></div>
+      </div>
+      <nav class="categorias-menu">
+        <ul>
+          <li><a href="#">Casual</a></li>
+          <li><a href="#">Corporativa</a></li>
+          <li><a href="#">Festiva</a></li>
+          <li><a href="#">Inverno</a></li>
+        </ul>
+      </nav>
+      <section class="mais-vendido">
+        <h2>Mais Vendidos</h2>
+        <div class="card-container">
+          <!-- Produtos em destaque -->
+          <div class="card">
+            <div class="star-icon"><i class="fa fa-star"></i></div>
+            <a href="#"><img src="imagens/kirei 1.jpg" alt="Produto 1"><p class="product-name">Produto 1</p></a>
+          </div>
+          <div class="card">
+            <div class="star-icon"><i class="fa fa-star"></i></div>
+            <a href="#"><img src="imagens/kirei2.png" alt="Produto 2"><p class="product-name">Produto 2</p></a>
+          </div>
+          <div class="card">
+            <div class="star-icon"><i class="fa fa-star"></i></div>
+            <a href="#"><img src="imagens/oi.jpg" alt="Produto 3"><p class="product-name">Produto 3</p></a>
+          </div>
+          <div class="card">
+            <div class="star-icon"><i class="fa fa-star"></i></div>
+            <a href="#"><img src="imagens/eae.jpg" alt="Produto 4"><p class="product-name">Produto 4</p></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <!-- =====================================================
+       2. CONTEÚDO PRINCIPAL
+       Formulário de escolha de pagamento + resumo do pedido
+  ===================================================== -->
+  <main class="container-pagamento">
+    <!-- Formas -->
+    <div class="formas-pagamento">
+      <h2>Selecione a forma de pagamento</h2>
+
+      <label class="opcao-pagamento">
+        <input type="radio" name="formaPagamento" value="pix">
+        <div class="icone-pix"></div>PIX
+        <div class="selo">Recomendado</div>
+      </label>
+
+      <label class="opcao-pagamento">
+        <input type="radio" name="formaPagamento" value="cartao">
+        <div class="icone-cartao"></div>CARTÃO
+      </label>
+
+      <label class="opcao-pagamento">
+        <input type="radio" name="formaPagamento" value="boleto">
+        <div class="icone-boleto"></div>BOLETO
+      </label>
+
+      <!-- detalhes PIX -->
+      <div class="detalhes-pagamento detalhes-pix">
+        <label for="codigo-pix">Código PIX</label>
+        <div class="duas-colunas">
+          <input id="codigo-pix" readonly value="123e4567-89ab-cdef-0123-456789abcdef">
+          <button type="button" class="botao-copiar">COPIAR</button>
+        </div>
+        <div class="placeholder">QR CODE</div>
+        <button type="button" class="botao-confirmar">CONFIRMAR PIX</button>
+      </div>
+
+      <!-- detalhes CARTÃO -->
+      <div class="detalhes-pagamento detalhes-cartao">
+        <label for="numero-cartao">Número do Cartão</label>
+        <input id="numero-cartao" placeholder="0000 0000 0000 0000">
+        <label for="nome-cartao">Nome Completo</label>
+        <input id="nome-cartao" placeholder="Como no cartão">
+        <div class="duas-colunas">
+          <div>
+            <label for="validade-cartao">Validade (MM/AA)</label>
+            <input id="validade-cartao" placeholder="MM/AA">
+          </div>
+          <div>
+            <label for="cvv-cartao">CVV</label>
+            <input id="cvv-cartao" placeholder="•••">
+          </div>
+        </div>
+        <label for="cpf-titular">CPF do Titular</label>
+        <input id="cpf-titular" placeholder="000.000.000-00">
+        <div class="placeholder">CARTÃO</div>
+        <button type="button" class="botao-confirmar">CONFIRMAR CARTÃO</button>
+      </div>
+
+      <!-- detalhes BOLETO -->
+      <div class="detalhes-pagamento detalhes-boleto">
+        <label for="cpf-boleto">CPF</label>
+        <input id="cpf-boleto" placeholder="000.000.000-00">
+        <label for="nome-boleto">Nome Completo</label>
+        <input id="nome-boleto" placeholder="Como no documento">
+        <label for="cep">CEP</label>
+        <div class="duas-colunas">
+          <input id="cep" placeholder="00000-000">
+          <input id="estado" placeholder="UF">
+        </div>
+        <div class="duas-colunas">
+          <input id="cidade" placeholder="Cidade">
+          <input id="bairro" placeholder="Bairro">
+        </div>
+        <div class="duas-colunas">
+          <input id="rua" placeholder="Rua/Avenida">
+          <input id="numero" placeholder="Nº">
+        </div>
+        <label for="complemento">Complemento (opcional)</label>
+        <input id="complemento" placeholder="Apto, bloco, etc.">
+        <div class="placeholder">BARCODE</div>
+        <button type="button" class="botao-confirmar">CONTINUAR</button>
+      </div>
+    </div>
+
+    <!-- Resumo -->
+    <aside class="resumo-compra">
+      <h3>Resumo da Compra</h3>
+      <div class="item-resumo"><span>Produto:</span><span id="valor-produto">R$ 900,00</span></div>
+      <div class="item-resumo"><span>Frete:</span><span id="valor-frete">R$ 100,00</span></div>
+      <div class="divisor"></div>
+      <div class="item-resumo total"><span>Valor Total:</span><span id="valor-total">R$ 1.000,00</span></div>
+    </aside>
+  </main>
+
+  <!-- =====================================================
+       3. RODAPÉ
+       Informações da marca e contatos
+  ===================================================== -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-info">
+        <h3>Controversy • Estilo em Todos os Momentos</h3>
+        <p>
+          Na Controversy você encontra peças que valorizam seu estilo com elegância e autenticidade.<br>
+          Vista sua melhor versão.<br>
+          Vista Controversy.
+        </p>
+        <span>© 2024 - 2025 Controversy</span>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-contato">
+        <h3>Contatos</h3>
+        <p>Email: <a href="mailto:controversy@gmail.com">controversy@gmail.com</a></p>
+        <hr>
+        <p>Instagram: controversy_br</p>
+        <hr>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
