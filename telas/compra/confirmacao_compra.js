@@ -4,5 +4,5 @@ HeaderFuncoes();
 
 document.querySelector('.botao-continuar').addEventListener('click', () => {
   // redireciona para a página de pagamento
-  window.location.href = 'pagamento.html';
+  window.location.href = 'pagamento/pagamento.html';
 });
