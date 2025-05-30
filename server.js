@@ -7,7 +7,7 @@ import cors from 'cors';
 const app = express();
 const port = 3000;
 const  cors_server= cors;
-
+const router=express.Router();
 app.use(cors_server({
   origin: 'http://127.0.0.1:5500'
 }));
@@ -18,7 +18,7 @@ app.use(express.json());
 async function initializeDatabase() {
   const db = await open({
     filename: 'controversy.db',
-    driver: sqlite3.Database
+    driver: sqlite3.Database  
   });
 
   return db;
@@ -77,42 +77,85 @@ app.post('/api/cadastro', async (req, res) => {
     res.status(500).json({ success: false, message: 'Erro ao cadastrar usuário.' });
   }
 });
-app.post('/api/carrinho', async (req, res) => {
-  const { usuario_id, produto_id, quantidade } = req.body;
+app.post('/api/carrinho/adicionar', async (req, res) => {
+  const { id_produto, tamanho, cor } = req.body;
 
-  if (!usuario_id || !produto_id || !quantidade) {
-    return res.status(400).json({ success: false, message: 'Dados incompletos.' });
+  if (!id_produto || !tamanho || !cor) {
+    return res.status(400).json({ message: 'Dados incompletos.' });
   }
+
+  const db = await initializeDatabase();
 
   try {
-    const db = await initializeDatabase();
-
-    // Verifica se o produto já está no carrinho do usuário
-    const itemExistente = await db.get(
-      'SELECT * FROM carrinho WHERE usuario_id = ? AND produto_id = ?',
-      [usuario_id, produto_id]
-    );
-
-    if (itemExistente) {
-      // Atualiza a quantidade
-      await db.run(
-        'UPDATE carrinho SET quantidade = quantidade + ? WHERE usuario_id = ? AND produto_id = ?',
-        [quantidade, usuario_id, produto_id]
-      );
-    } else {
-      // Insere um novo item
-      await db.run(
-        'INSERT INTO carrinho (usuario_id, produto_id, quantidade) VALUES (?, ?, ?)',
-        [usuario_id, produto_id, quantidade]
-      );
+    const produto = await db.get('SELECT * FROM produto WHERE id = ?', [id_produto]);
+    if (!produto) {
+      return res.status(404).json({ message: 'Produto não encontrado.' });
     }
 
-    res.status(200).json({ success: true, message: 'Produto adicionado ao carrinho.' });
+    const itemExistente = await db.get(`
+      SELECT * FROM carrinho
+      WHERE produto_id = ? AND tamanho = ? AND cor = ?`,
+      [id_produto, tamanho, cor]);
+
+    if (itemExistente) {
+      await db.run(`UPDATE carrinho SET quantidade = quantidade + 1 WHERE id = ?`, [itemExistente.id]);
+    } else {
+      await db.run(`
+        INSERT INTO carrinho (produto_id, tamanho, cor, quantidade)
+        VALUES (?, ?, ?, ?)`,
+        [id_produto, tamanho, cor, 1]);
+    }
+
+    res.status(200).json({ message: 'Produto adicionado ao carrinho!' });
+
   } catch (error) {
-    console.error('Erro ao adicionar ao carrinho:', error.message);
-    res.status(500).json({ success: false, message: 'Erro interno do servidor.' });
+    console.error('Erro ao adicionar produto ao carrinho:', error.message);
+    res.status(500).json({ message: 'Erro ao adicionar ao carrinho.' });
   }
 });
+
+app.get('/api/carrinho', async (req, res) => {
+  const db = await initializeDatabase();
+
+  try {
+    const itens = await db.all(`
+      SELECT 
+        c.id,
+        c.id_produto,
+        c.tamanho,
+        c.cor,
+        c.quantidade,
+        p.nome,
+        p.preco,
+        p.foto
+      FROM carrinho c
+      JOIN produto p ON p.id = c.id_produto
+    `);
+
+    res.status(200).json(itens);
+  } catch (error) {
+    console.error('Erro ao buscar carrinho:', error.message);
+    res.status(500).json({ message: 'Erro ao buscar carrinho.' });
+  }
+});
+
+app.get('/api/carrinho', (req, res) => {
+  const query = `
+    SELECT carrinho.id, carrinho.quantidade, carrinho.tamanho, carrinho.cor,
+           produto.nome, produto.foto, produto.preco
+    FROM carrinho
+    JOIN produto ON carrinho.id_produto = produto.codigo
+  `;
+
+  db.all(query, [], (err, rows) => {
+    if (err) {
+      console.error('Erro ao buscar itens do carrinho:', err.message);
+      return res.status(500).json({ erro: 'Erro ao buscar itens do carrinho' });
+    }
+    res.json(rows);
+  });
+});
+
 
 // Iniciar servidor
 app.listen(port, () => {

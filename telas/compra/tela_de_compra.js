@@ -1,4 +1,4 @@
-// 1. Importações
+ // 1. Importações
 import { HeaderFuncoes } from "../../header.js";
 HeaderFuncoes();
 
@@ -23,3 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+// carrinho.js
+export async function adicionarAoCarrinho(idProduto, tamanho, cor) {
+  try {
+    const resposta = await fetch('http://localhost:3000/api/carrinho/adicionar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_produto: idProduto, tamanho, cor })
+    });
+
+    const resultado = await resposta.json();
+    alert(resultado.message);
+  } catch (error) {
+    console.error('Erro ao adicionar ao carrinho:', error);
+  }
+}
+window.adicionarAoCarrinho = adicionarAoCarrinho;
